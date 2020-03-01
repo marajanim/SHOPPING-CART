@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <title>Shopping Cart</title>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet" />
+   <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+
+   <section>
+      <div class="container">
+         <div class="cart">
+            <div class="col-md-12 col-lg-10 mx-auto">
+               <div id="cart1" class="cart-item">
+                  <div class="row">
+                     <div class="col-md-7 center-item">
+                        <img src="images/product-1.png" alt="">
+                        <h5>iPhone 11 128GB Black</h5>
+                     </div>
+
+                     <div class="col-md-5 center-item">
+                        <div class="input-group number-spinner">
+                           <button onclick="RemoveFromCart();"  class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="product" type="text" class="form-control text-center" value="1">
+                           <button onclick="AddToCart();" class="btn btn-default" id="increse"><i class="fas fa-plus"></i></button>
+                        </div>
+                        <h5>$ <span id="iPhonePrice">1219</span></h5>
+                        <img src="images/remove.png" alt="" id="remove" class="remove-item">
+                     </div>
+                  </div>
+               </div>
+
+               <div id="cart2" class="cart-item">
+                  <div class="row">
+                     <div class="col-md-7 center-item mx-auto">
+                        <img src="images/product-2.png" alt="">
+                        <h5>iPhone 11 Silicone Case - Black</h5>
+                     </div>
+                     <div class="col-md-5 center-item">
+                        <div class="input-group number-spinner">
+                           <button  class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="productCase" type="text" class="form-control text-center" value="1">
+                           <button class="btn btn-default"><i class="fas fa-plus"></i></button>
+
+                        </div>
+                        <h5>$ <span id="case">59</span> </h5>
+                        <img src="images/remove.png" alt="" id="remove2" class="remove-item">
+                     </div>
+                  </div>
+               </div>
+
+               <div class="cart-item">
+                  <div class="row">
+
+                     <div class="col-md-8">
+                        <h5>Subtotal: </h5>
+                        <h5>Tax:</h5>
+                        <h5>Total:</h5>
+                     </div>
+
+                     <div class="col-md-4 status">
+                        <h5>$ <span id= "SubTotal">1,278</span></h5>
+                        <h5>$ <span id="tax">0</span></h5>
+                        <h5>$ <span id="Total">1,278</span></h5>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-12 pt-4 pb-4">
+                  <button type="button" class="btn btn-success check-out">Check Out</button>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+</body>
+
+
+<script>
+
+
+   var i = 1;
+   function AddToCart() {
+      i++;
+      document.getElementById("product").value = i;
+      const price = document.getElementById("iPhonePrice").innerText;
+   }
+// decrement item
+   function RemoveFromCart() {
+      i--;
+      document.getElementById("product").value = i;
+      const price = document.getElementById("iPhonePrice").innerText;
+   }
+
+// var i = 1
+// document.getElementById("increse").addEventListener("click", function() {
+//       document.getElementById("product").value = i;
+//       const price = document.getElementById("iPhonePrice").innerText;
+
+// subtotal amount 
+//  function amountNumber() {
+//     const iphone = (document.getElementById("iPhonePrice").innerText);
+//     const FloatiPhone = parseFloat(iphone)
+//     const icase = (document.getElementById("case").innerText);
+//     const FloatiCase = parseFloat(iphone)
+//     const itotal = FloatiPhone + FloatiCase;
+
+//     document.getElementById("SubTotal").innerText = itotal
+//     document.getElementById("tax").innerText = (itotal * 0.10);
+//     document.getElementById("Total").innerText = (itotal + itotal * 0.10);
+
+    
+//  }
+
+// item price 
+ function totalPrice(id, productPrice, product) {
+  
+  if (productPrice == "iPhonePrice") {
+    document.getElementById(id).value = product;
+    document.getElementById(productPrice).innerText = 1219 * product;
+    amountNumber();
+  } else {
+    document.getElementById(id).value = product;
+    document.getElementById(productPrice).innerText = 59 * product;
+    amountNumber();
+  }
+}
+
+
+
+// hide item 
+   const cartBtn =document.getElementById("remove");
+   cartBtn.addEventListener("click", function(){
+      const cart1 = document.getElementById("cart1");
+      cart1.style.display = "none";
+      totalPrice("product", "iPhonePrice", 0);
+   })
+
+
+   const cartBtn2 =document.getElementById("remove2");
+   cartBtn2.addEventListener("click", function(){
+      const cart2 = document.getElementById("cart2");
+      cart2.style.display = "none";
+      totalPrice("productCase", "icase", 0);
+   })
+
+
+
+
+</script>
+</html>
