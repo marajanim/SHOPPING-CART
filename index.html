@@ -64,7 +64,7 @@
                      </div>
 
                      <div class="col-md-4 status">
-                        <h5>$ <span id= "SubTotal">0</span></h5>
+                        <h5>$ <span id= "SubTotal">1278</span></h5>
                         <h5>$ <span id="tax">0</span></h5>
                         <h5>$ <span id="Total">1,278</span></h5>
                      </div>
@@ -89,6 +89,21 @@
       document.getElementById("product").value = i;
       const price = document.getElementById("iPhonePrice").innerText;
       document.getElementById("iPhonePrice").innerText = 1219 * product.value;
+
+//   Subtotal Calculate
+      const SubTotal = document.getElementById("SubTotal").innerHTML;
+      const Tax = document.getElementById("tax").innerHTML;
+      const Floattax = parseFloat(Tax);
+      const Total = document.getElementById("Total").innerHTML;
+      const FloatTotal = parseFloat(Total);
+
+      
+      const TotalPrice = 1219 * product.value + 59 * productCase.value;
+      document.getElementById("SubTotal").innerHTML = TotalPrice;
+      document.getElementById("tax").innerHTML = 0.15 * TotalPrice;
+
+      document.getElementById("Total").innerHTML = TotalPrice + (TotalPrice * 0.15);
+
    }
    // iphone price decrement
    function RemoveFromCart() {
@@ -96,16 +111,21 @@
       document.getElementById("product").value = i;
       const price = document.getElementById("iPhonePrice").innerText;
       document.getElementById("iPhonePrice").innerText = (product.value * 1219);
+//   Subtotal Calculate
 
-      // if (iPhonePrice > 0) {
-      //    document.getElementById("iPhonePrice").innerText = (product.value * 1219);
-         
-      // }
-      // else{
-      //    document.getElementById("iPhonePrice").innerText = 0;
-      // }
+      const Tax = document.getElementById("tax").innerHTML;
+      const Floattax = parseFloat(Tax);
+
+      const SubTotal = document.getElementById("SubTotal").innerHTML;
+
+      const Total = document.getElementById("Total").innerHTML;
+      const FloatTotal = parseFloat(Total);
+
+      const TotalPrice = (product.value * 1219) + (productCase.value * 59);
+      document.getElementById("SubTotal").innerHTML = TotalPrice;
+      document.getElementById("tax").innerHTML = (TotalPrice * 0.15);
+      document.getElementById("Total").innerHTML = TotalPrice - (TotalPrice * 0.15);
    }
-
 // case price increment & decrement 
    var c = 1;
    // case price increment
@@ -114,6 +134,20 @@
       document.getElementById("productCase").value = c;
       const Cprice = document.getElementById("casePrice").innerText;
       document.getElementById("casePrice").innerText = 59 * productCase.value;
+      
+
+      
+      //   Subtotal Calculate
+      const Tax = document.getElementById("tax").innerHTML;
+      const Floattax = parseFloat(Tax);
+
+      const SubTotal = document.getElementById("SubTotal").innerHTML;
+
+      const Total = document.getElementById("Total").innerHTML;
+      const FloatTotal = parseFloat(Total);
+      const TotalPrice = 1219 * product.value + 59 * productCase.value;
+      document.getElementById("tax").innerHTML = 0.15 * TotalPrice;
+      document.getElementById("Total").innerHTML = TotalPrice + (TotalPrice * 0.15);
    }
    // // case price decrement
    function RemoveFromCartCase() {
@@ -122,43 +156,34 @@
       const Cprice = document.getElementById("casePrice").innerText;
       document.getElementById("casePrice").innerText = (productCase.value * 59);
 
-      // if (iPhonePrice >= 0) {
-      //    document.getElementById("casePrice").innerText = (product.value * 59);
-         
-      // }
-      // else{
-      //    document.getElementById("casePrice").innerText = 0;
-      // }
+      
+//   Subtotal Calculate
+      const Tax = document.getElementById("tax").innerHTML;
+      const Floattax = parseFloat(Tax);
+      const SubTotal = document.getElementById("SubTotal").innerHTML;
+      const Total = document.getElementById("Total").innerHTML;
+      const FloatTotal = parseFloat(Total);
+      const TotalPrice = (product.value * 1219) + (productCase.value * 59);
+      document.getElementById("tax").innerHTML = (TotalPrice * 0.15);
+      document.getElementById("Total").innerHTML = TotalPrice - (TotalPrice * 0.15);
    }
-
-   const Sub = document.getElementById("SubTotal").innerText;
-   const TotalIphone = document.getElementById("iPhonePrice").innerText;
-   const flaotPhone = parseFloat(TotalIphone);
-
-   const TotalCase = document.getElementById("casePrice").innerText;
-   const flaotCase = parseFloat(TotalCase);
-
-   const TotalTax = document.getElementById("tax").innerText;
-   const TotalAmount = document.getElementById("Total").innerText;
-   document.getElementById("SubTotal").innerText = flaotCase + flaotPhone;
-   // document.getElementById("Total").innerText = Total + tax;
-   // document.getElementById("tax").innerText = 10 % Total;
-
-
 // hide item 
    const cartBtn =document.getElementById("remove");
    cartBtn.addEventListener("click", function(){
       const cart1 = document.getElementById("cart1");
       cart1.style.display = "none";
-      totalPrice("product", "iPhonePrice", 0);
+      document.getElementById("Total").innerHTML = 0;
+      document.getElementById("SubTotal").innerHTML = 0;
+      document.getElementById("tax").innerHTML = 0;
+      
    })
-
-
    const cartBtn2 =document.getElementById("remove2");
    cartBtn2.addEventListener("click", function(){
       const cart2 = document.getElementById("cart2");
       cart2.style.display = "none";
-      totalPrice("productCase", "icase", 0);
+      document.getElementById("Total").innerHTML = 0;
+      document.getElementById("SubTotal").innerHTML = 0;
+      
    })
 </script>
 </html>
