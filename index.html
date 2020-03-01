@@ -65,8 +65,8 @@
 
                      <div class="col-md-4 status">
                         <h5>$ <span id= "SubTotal">1278</span></h5>
-                        <h5>$ <span id="tax">0</span></h5>
-                        <h5>$ <span id="Total">1,278</span></h5>
+                        <h5>$ <span id="tax">191.7</span></h5>
+                        <h5>$ <span id="Total">1469.7</span></h5>
                      </div>
                   </div>
                </div>
@@ -124,7 +124,7 @@
       const TotalPrice = (product.value * 1219) + (productCase.value * 59);
       document.getElementById("SubTotal").innerHTML = TotalPrice;
       document.getElementById("tax").innerHTML = (TotalPrice * 0.15);
-      document.getElementById("Total").innerHTML = TotalPrice - (TotalPrice * 0.15);
+      document.getElementById("Total").innerHTML = TotalPrice + (TotalPrice * 0.15);
    }
 // case price increment & decrement 
    var c = 1;
@@ -165,15 +165,15 @@
       const FloatTotal = parseFloat(Total);
       const TotalPrice = (product.value * 1219) + (productCase.value * 59);
       document.getElementById("tax").innerHTML = (TotalPrice * 0.15);
-      document.getElementById("Total").innerHTML = TotalPrice - (TotalPrice * 0.15);
+      document.getElementById("Total").innerHTML = TotalPrice + (TotalPrice * 0.15);
    }
 // hide item 
    const cartBtn =document.getElementById("remove");
    cartBtn.addEventListener("click", function(){
       const cart1 = document.getElementById("cart1");
       cart1.style.display = "none";
-      document.getElementById("Total").innerHTML = 0;
-      document.getElementById("SubTotal").innerHTML = 0;
+      document.getElementById("Total").innerHTML = Total - SubTotal;
+      document.getElementById("SubTotal").innerHTML = Total - TotalPrice;
       document.getElementById("tax").innerHTML = 0;
       
    })
@@ -181,8 +181,11 @@
    cartBtn2.addEventListener("click", function(){
       const cart2 = document.getElementById("cart2");
       cart2.style.display = "none";
+
+      const TotalPrice = document.getElementById("Total")
       document.getElementById("Total").innerHTML = 0;
       document.getElementById("SubTotal").innerHTML = 0;
+      document.getElementById("tax").innerHTML = 0;
       
    })
 </script>
