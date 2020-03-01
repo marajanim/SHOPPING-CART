@@ -43,12 +43,12 @@
                      </div>
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button  class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <button onclick="RemoveFromCartCase();" class="btn btn-default"><i class="fas fa-minus"></i></button>
                            <input id="productCase" type="text" class="form-control text-center" value="1">
-                           <button class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button onclick="AddToCartCase();" class="btn btn-default"><i class="fas fa-plus"></i></button>
 
                         </div>
-                        <h5>$ <span id="case">59</span> </h5>
+                        <h5>$ <span id="casePrice">59</span> </h5>
                         <img src="images/remove.png" alt="" id="remove2" class="remove-item">
                      </div>
                   </div>
@@ -64,7 +64,7 @@
                      </div>
 
                      <div class="col-md-4 status">
-                        <h5>$ <span id= "SubTotal">1,278</span></h5>
+                        <h5>$ <span id= "SubTotal">0</span></h5>
                         <h5>$ <span id="tax">0</span></h5>
                         <h5>$ <span id="Total">1,278</span></h5>
                      </div>
@@ -81,55 +81,68 @@
 
 
 <script>
-
-
+// iphone price increment & decrement 
    var i = 1;
+   // iphone price increment
    function AddToCart() {
       i++;
       document.getElementById("product").value = i;
       const price = document.getElementById("iPhonePrice").innerText;
+      document.getElementById("iPhonePrice").innerText = 1219 * product.value;
    }
-// decrement item
+   // iphone price decrement
    function RemoveFromCart() {
       i--;
       document.getElementById("product").value = i;
       const price = document.getElementById("iPhonePrice").innerText;
+      document.getElementById("iPhonePrice").innerText = (product.value * 1219);
+
+      // if (iPhonePrice > 0) {
+      //    document.getElementById("iPhonePrice").innerText = (product.value * 1219);
+         
+      // }
+      // else{
+      //    document.getElementById("iPhonePrice").innerText = 0;
+      // }
    }
 
-// var i = 1
-// document.getElementById("increse").addEventListener("click", function() {
-//       document.getElementById("product").value = i;
-//       const price = document.getElementById("iPhonePrice").innerText;
+// case price increment & decrement 
+   var c = 1;
+   // case price increment
+   function AddToCartCase() {
+      c++;
+      document.getElementById("productCase").value = c;
+      const Cprice = document.getElementById("casePrice").innerText;
+      document.getElementById("casePrice").innerText = 59 * productCase.value;
+   }
+   // // case price decrement
+   function RemoveFromCartCase() {
+      c--;
+      document.getElementById("productCase").value = c;
+      const Cprice = document.getElementById("casePrice").innerText;
+      document.getElementById("casePrice").innerText = (productCase.value * 59);
 
-// subtotal amount 
-//  function amountNumber() {
-//     const iphone = (document.getElementById("iPhonePrice").innerText);
-//     const FloatiPhone = parseFloat(iphone)
-//     const icase = (document.getElementById("case").innerText);
-//     const FloatiCase = parseFloat(iphone)
-//     const itotal = FloatiPhone + FloatiCase;
+      // if (iPhonePrice >= 0) {
+      //    document.getElementById("casePrice").innerText = (product.value * 59);
+         
+      // }
+      // else{
+      //    document.getElementById("casePrice").innerText = 0;
+      // }
+   }
 
-//     document.getElementById("SubTotal").innerText = itotal
-//     document.getElementById("tax").innerText = (itotal * 0.10);
-//     document.getElementById("Total").innerText = (itotal + itotal * 0.10);
+   const Sub = document.getElementById("SubTotal").innerText;
+   const TotalIphone = document.getElementById("iPhonePrice").innerText;
+   const flaotPhone = parseFloat(TotalIphone);
 
-    
-//  }
+   const TotalCase = document.getElementById("casePrice").innerText;
+   const flaotCase = parseFloat(TotalCase);
 
-// item price 
- function totalPrice(id, productPrice, product) {
-  
-  if (productPrice == "iPhonePrice") {
-    document.getElementById(id).value = product;
-    document.getElementById(productPrice).innerText = 1219 * product;
-    amountNumber();
-  } else {
-    document.getElementById(id).value = product;
-    document.getElementById(productPrice).innerText = 59 * product;
-    amountNumber();
-  }
-}
-
+   const TotalTax = document.getElementById("tax").innerText;
+   const TotalAmount = document.getElementById("Total").innerText;
+   document.getElementById("SubTotal").innerText = flaotCase + flaotPhone;
+   // document.getElementById("Total").innerText = Total + tax;
+   // document.getElementById("tax").innerText = 10 % Total;
 
 
 // hide item 
@@ -147,9 +160,5 @@
       cart2.style.display = "none";
       totalPrice("productCase", "icase", 0);
    })
-
-
-
-
 </script>
 </html>
